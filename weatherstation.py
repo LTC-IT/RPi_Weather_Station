@@ -16,7 +16,8 @@ temp_level = round(sense.get_temperature() / 7)
 
 print (temp_level)
 
-for index in range (0,temp_level+1):
+# Changes the elements to true up to temp_level
+for index in range (6,temp_level,-1):
     temp_range[index] = True
     
 print(temp_range)
@@ -31,6 +32,31 @@ thermometer = [
     b,b,w,b,b,b,w,b,
     b,b,w,w,w,w,w,b
     ]
+
+sense.set_pixels(thermometer)
+
+'''
+# Version 1 - Manual
+# This doesn't use the list.
+
+for row in range (temp_level, 0, -1):
+    row_number = row * 8 + 4
+    print(row_number)
+    thermometer[row_number] = [255,0,0]
+
+if temp_level >= 0:
+    thermometer[51] = [255,0,0]
+    thermometer[52] = [255,0,0]
+    thermometer[53] = [255,0,0]
+
+for row in range (temp_level, 0, -1):
+    if temp_level >=2:
+        row_number = row * 8 + 3
+        if thermometer[row_number] == [0,0,0]:
+            thermometer[row_number] = [255,0,0]
+
+'''
+# TODO: Version 2- 
 
 sense.set_pixels(thermometer)
 
