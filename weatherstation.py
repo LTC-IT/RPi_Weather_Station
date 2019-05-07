@@ -69,12 +69,87 @@ def temperature_display():
 
 
 def humidity_display():
-    humidty = round(sense.get_humidity()))
+    humidity = round(sense.get_humidity())
+    
+    b = [0,0,0]
+    w = [0,0,0]
+    
+    humidity_gradient = round(humidity / 10)
+    
+    print (humidity_gradient)
+    
+    # l for level
+    l = humidity_gradient * 25
+    
+    w = [l,l,l]
+    
+    cloud = [
+        b,b,b,b,b,b,b,b,
+        b,b,b,w,w,w,b,b,
+        b,w,w,w,w,w,w,b,
+        w,w,w,w,w,w,w,w,
+        w,w,w,w,w,w,w,w,
+        w,w,w,w,w,w,w,b,
+        b,b,w,w,w,b,b,b,
+        b,b,b,b,b,b,b,b
+        ]
+    sense.set_pixels(cloud)
+
+def barometer_display():
+    bar = round(sense.get_pressure())
+    
+    b = [0,0,0]
+    
+    sunny = [
+        b,b,b,b,b,0,0,0,
+        b,b,b,b,b,0,0,0,
+        b,b,b,b,b,0,0,0,
+        b,b,b,b,b,0,0,0,
+        b,b,b,b,b,0,0,0,
+        b,b,b,b,b,0,0,0,
+        b,b,b,b,b,0,0,0,
+        b,b,b,b,b,0,0,0
+        ]
+    
+    r = [255,0,0]
+    
+    up = [
+        0,0,0,0,0,b,r,b,
+        0,0,0,0,0,r,r,r,
+        0,0,0,0,0,b,r,b,
+        0,0,0,0,0,b,r,b,
+        0,0,0,0,0,b,r,b,
+        0,0,0,0,0,b,r,b,
+        0,0,0,0,0,b,r,b,
+        0,0,0,0,0,b,r,b
+        ]
+    down = [
+        0,0,0,0,0,b,r,b,
+        0,0,0,0,0,b,r,b,
+        0,0,0,0,0,b,r,b,
+        0,0,0,0,0,b,r,b,
+        0,0,0,0,0,b,r,b,
+        0,0,0,0,0,b,r,b,
+        0,0,0,0,0,r,r,r,
+        0,0,0,0,0,b,r,b
+        ]
+    stable = [
+        0,0,0,0,0,b,b,b,
+        0,0,0,0,0,b,b,b,
+        0,0,0,0,0,b,b,b,
+        0,0,0,0,0,r,r,r,
+        0,0,0,0,0,r,r,r,
+        0,0,0,0,0,b,b,b,
+        0,0,0,0,0,b,b,b,
+        0,0,0,0,0,b,b,b
+        ]
     
     
 
 while True:
-    temperature_display()
+    #temperature_display()
+    #humidity_display()
+    barometer_display()
     #sense.show_message("Humidity : {}%".format(round(sense.get_humidity())))
     #sense.show_message("Temperature: {} celcius".format(round(sense.get_temperature())))
     #sense.show_message("Pressure: {} mbar".format(round(sense.get_pressure())))
