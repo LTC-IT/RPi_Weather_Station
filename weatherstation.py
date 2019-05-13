@@ -99,19 +99,41 @@ def barometer_display():
     bar = round(sense.get_pressure())
     
     b = [0,0,0]
+    r = [255,0,0]
+    y = [255,255,0]
+    bl = [0,0,255]
     
     sunny = [
         b,b,b,b,b,0,0,0,
         b,b,b,b,b,0,0,0,
-        b,b,b,b,b,0,0,0,
-        b,b,b,b,b,0,0,0,
-        b,b,b,b,b,0,0,0,
+        b,b,y,b,b,0,0,0,
+        b,y,y,y,b,0,0,0,
+        b,b,y,b,b,0,0,0,
         b,b,b,b,b,0,0,0,
         b,b,b,b,b,0,0,0,
         b,b,b,b,b,0,0,0
         ]
     
-    r = [255,0,0]
+    rainy = [
+        b,b, b, b, b,0,0,0,
+        b,b, bl,bl,b,0,0,0,
+        b,bl,b, bl,b,0,0,0,
+        b,b, bl,b, b,0,0,0,
+        b,bl,b, bl,b,0,0,0,
+        b,b, bl,b, b,0,0,0,
+        b,bl,b, bl,b,0,0,0,
+        b,b, bl,b, b,0,0,0
+        ]
+    stormy = [
+        b,b,b,b,b,0,0,0,
+        b,b,b,y,b,0,0,0,
+        b,b,b,y,b,0,0,0,
+        b,y,y,y,b,0,0,0,
+        b,y,b,b,b,0,0,0,
+        b,y,b,b,b,0,0,0,
+        b,b,b,b,b,0,0,0,
+        b,b,b,b,b,0,0,0
+        ]
     
     up = [
         0,0,0,0,0,b,r,b,
@@ -143,6 +165,13 @@ def barometer_display():
         0,0,0,0,0,b,b,b,
         0,0,0,0,0,b,b,b
         ]
+    
+    if bar < 995:
+        #rainy
+    elif bar < 1035:
+        #cloudy
+    else:
+        #sunny
     
     
 
