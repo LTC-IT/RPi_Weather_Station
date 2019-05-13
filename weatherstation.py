@@ -124,7 +124,7 @@ def barometer_display():
         b,bl,b, bl,b,0,0,0,
         b,b, bl,b, b,0,0,0
         ]
-    stormy = [
+    cloudy = [
         b,b,b,b,b,0,0,0,
         b,b,b,y,b,0,0,0,
         b,b,b,y,b,0,0,0,
@@ -165,14 +165,39 @@ def barometer_display():
         0,0,0,0,0,b,b,b,
         0,0,0,0,0,b,b,b
         ]
-    
+    display = [
+        b,b,b,b,b,b,0,0,
+        0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0
+        ]
     if bar < 995:
-        #rainy
+        for index, element in enumerate(rainy):
+            #print ("{}: {}".format(counter, index))
+            if element == 0:
+                display[index] = up[index]
+            else:
+                display[index] = element
     elif bar < 1035:
-        #cloudy
+        for index, element in enumerate(cloudy):
+            #print ("{}: {}".format(counter, index))
+            if element == 0:
+                display[index] = up[index]
+            else:
+                display[index] = element
     else:
-        #sunny
+        for index, element in enumerate(sunny):
+            #print ("{}: {}".format(counter, index))
+            if element == 0:
+                display[index] = up[index]
+            else:
+                display[index] = element
     
+    sense.set_pixels(display)
     
 
 while True:
