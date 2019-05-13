@@ -102,6 +102,7 @@ def barometer_display():
     r = [255,0,0]
     y = [255,255,0]
     bl = [0,0,255]
+    w = [255,255,255]
     
     sunny = [
         b,b,b,b,b,0,0,0,
@@ -113,18 +114,17 @@ def barometer_display():
         b,b,b,b,b,0,0,0,
         b,b,b,b,b,0,0,0
         ]
-    
-    rainy = [
-        b,b, b, b, b,0,0,0,
-        b,b, bl,bl,b,0,0,0,
-        b,bl,b, bl,b,0,0,0,
-        b,b, bl,b, b,0,0,0,
-        b,bl,b, bl,b,0,0,0,
-        b,b, bl,b, b,0,0,0,
-        b,bl,b, bl,b,0,0,0,
-        b,b, bl,b, b,0,0,0
-        ]
     cloudy = [
+        b,b,b,b,b,0,0,0,
+        b,b,b,b,b,0,0,0,
+        b,w,w,w,b,0,0,0,
+        b,w,w,w,b,0,0,0,
+        b,w,w,w,b,0,0,0,
+        b,b,b,b,b,0,0,0,
+        b,b,b,b,b,0,0,0,
+        b,b,b,b,b,0,0,0
+        ]
+    stormy = [
         b,b,b,b,b,0,0,0,
         b,b,b,y,b,0,0,0,
         b,b,b,y,b,0,0,0,
@@ -176,7 +176,7 @@ def barometer_display():
         0,0,0,0,0,0,0,0
         ]
     if bar < 995:
-        for index, element in enumerate(rainy):
+        for index, element in enumerate(stormy):
             #print ("{}: {}".format(counter, index))
             if element == 0:
                 display[index] = up[index]
