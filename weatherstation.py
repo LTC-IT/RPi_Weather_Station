@@ -96,6 +96,8 @@ def humidity_display():
     sense.set_pixels(cloud)
 
 def barometer_display():
+    oldbar = round(sense.get_pressure())
+    sleep(5)
     bar = round(sense.get_pressure())
     
     b = [0,0,0]
@@ -166,7 +168,7 @@ def barometer_display():
         0,0,0,0,0,b,b,b
         ]
     display = [
-        b,b,b,b,b,b,0,0,
+        0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,
@@ -179,31 +181,51 @@ def barometer_display():
         for index, element in enumerate(stormy):
             #print ("{}: {}".format(counter, index))
             if element == 0:
-                display[index] = up[index]
+                if oldbar < bar:
+                    display[index] = up[index]
+                elif oldbar > bar:
+                    display[index] = down[index]
+                else:
+                    display[index] = stable[index]
             else:
                 display[index] = element
     elif bar < 1035:
         for index, element in enumerate(cloudy):
             #print ("{}: {}".format(counter, index))
             if element == 0:
-                display[index] = up[index]
+                if oldbar < bar:
+                    display[index] = up[index]
+                elif oldbar > bar:
+                    display[index] = down[index]
+                else:
+                    display[index] = stable[index]
             else:
                 display[index] = element
     else:
         for index, element in enumerate(sunny):
             #print ("{}: {}".format(counter, index))
             if element == 0:
-                display[index] = up[index]
+                if oldbar < bar:
+                    display[index] = up[index]
+                elif oldbar > bar:
+                    display[index] = down[index]
+                else:
+                    display[index] = stable[index]
             else:
                 display[index] = element
-    
     sense.set_pixels(display)
     
-
+sense.clear()
 while True:
-    #temperature_display()
-    #humidity_display()
-    barometer_display()
+    
+    event = sense.stick.wait_for_event()
+    if event.direction == "right":
+        temperature_display()
+    if event.direction == "left":
+        barometer_display()
+    if event.direction == "up":
+        humidity_display() 
+    
     #sense.show_message("Humidity : {}%".format(round(sense.get_humidity())))
     #sense.show_message("Temperature: {} celcius".format(round(sense.get_temperature())))
     #sense.show_message("Pressure: {} mbar".format(round(sense.get_pressure())))
